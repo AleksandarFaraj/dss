@@ -5,10 +5,10 @@ DROP TABLE IF EXISTS fordon;
 DROP TABLE IF EXISTS tid;
 
 CREATE TABLE transaktion(
-	station_id SMALLINT,
-	fordon_id TINYINT,
-	passage_id SMALLINT,
-	tidpunkt_id INT,
+	station_id INTEGER,
+	fordon_id INTEGER,
+	passage_id INTEGER,
+	tidpunkt_id INTEGER,
 	co2	SMALLINT NOT NULL,
 	pris SMALLINT NOT NULL,
 	FOREIGN KEY(station_id) REFERENCES station(station_id),
@@ -18,29 +18,30 @@ CREATE TABLE transaktion(
 );
 
 CREATE TABLE station(
-	station_id 	SMALLINT	PRIMARY KEY,
+	station_id 	INTEGER	PRIMARY KEY,
 	gatunamn 	CHAR(50) NOT NULL,
 	stadsdel	CHAR(50) NOT NULL,
 	stad	CHAR(50) NOT NULL
 );
 
 CREATE TABLE fordon(
-	passage_id SMALLINT,
-	fordon_id TINYINT PRIMARY KEY,
-	klass 	CHAR(1) NOT NULL
+	fordon_id INTEGER PRIMARY KEY,
+	klass 	CHAR(15) NOT NULL
 );
 
 CREATE TABLE passage(
-	passage_id INT PRIMARY KEY,
-	station_id SMALLINT,
+	passage_id INTEGER PRIMARY KEY,
+	station_id INTEGER,
 	stadsdel CHAR(25),
 	FOREIGN KEY (station_id) REFERENCES station(station_id)
 );
 
 CREATE TABLE tid(
-	tidpunkt_id INT PRIMARY KEY,
-	år SMALLINT NOT NULL,
-	månad TINYINT NOT NULL,
+	tidpunkt_id INTEGER PRIMARY KEY,
+	ar SMALLINT NOT NULL,
+	manad TINYINT NOT NULL,
 	dag TINYINT NOT NULL,
-	timme TINYINT NOT NULL
+	timme TINYINT NOT NULL,
+	minut TINYINT NOT NULL,
+	sekund TINYINT NOT NULL
 );
